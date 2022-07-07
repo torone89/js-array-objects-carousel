@@ -1,0 +1,46 @@
+/* *************************/
+/* COLOR */
+/* *************************/
+
+
+
+/* *************************/
+/* GENERIC */
+/* *************************/
+
+.container {
+    background-color: aqua;
+    height: 800px;
+
+}
+
+.row {
+    border: 2px dashed yellow;
+}
+
+.row>[class^='col'] {
+    min-height: 100px;
+    background-color: blanchedalmond;
+    border: 1px gray solid;
+}
+
+.row .row>[class^='col'] {
+    background-color: orange;
+
+}
+
+
+/* *************************/
+/* UTILITIES */
+/* *************************/
+
+
+
+/* *************************/
+/* Header
+/* *************************/
+
+
+/* *************************/
+/* Main */
+/* *************************/
