@@ -2,25 +2,15 @@
 // VERIFICA COLLEGAMENTO JAVA
 console.log("JS")
 
-
-// Ciao ragazze e ciao ragazzi!!
-// Esercizio di oggi: Carosello Array di Oggetti
-// nome repo: js-array-objects-carousel
-// ## Consegna
 // Dato un array di oggetti letterali con:
 // - url dell’immagine
 // - titolo
 // - descrizione
 // Creare un carosello ispirandosi alla foto allegata. Potete anche usare come base il carosello dell'esercizio precedente
-//
+
 // Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
 // Al click dell’utente sulle frecce verso sinistra o destra, l’immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
-// ## Milestone 2:
-// Aggiungere il ciclo infinito del carosello. Ovvero se la miniatura attiva è la prima e l’utente clicca la freccia verso destra, la miniatura che deve attivarsi sarà l’ultima e viceversa per l’ultima miniatura se l’utente clicca la freccia verso sinistra.
-// ---
-// ## BONUS 1:
-// Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l’immagine corrispondente.
-// ## BONUS 2:
+
 // Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
 // ## BONUS 3:
 // Aggiungere bottoni di start/stop e di inversione del meccanismo di autoplay.
@@ -95,6 +85,11 @@ contenitore.innerHTML += item
 
 thumbnails.innerHTML += thumb
 
+// / ## Milestone 2:
+// Aggiungere il ciclo infinito del carosello. Ovvero se la miniatura attiva è la prima e l’utente clicca la freccia verso destra, la miniatura che deve attivarsi sarà l’ultima e viceversa per l’ultima miniatura se l’utente clicca la freccia verso sinistra.
+// ---
+// ## BONUS 1:
+// Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l’immagine corrispondente.
 
 
 // Prendo le classi item&scale dal css per attivare disattivare stili sulle immagini
@@ -110,6 +105,7 @@ const dopo = document.getElementById('dopo');
 console.log(prima, dopo)
 
 // Aggiungo la listener al button
+
 
 dopo.addEventListener('click', function () {
     //rimuovo la classe active
@@ -155,5 +151,27 @@ prima.addEventListener('click', function () {
 })
 
 
+// ## BONUS 2:
+// ## BONUS 2:
+// Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo 
+// (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
 
+const autoplay = setInterval(function () {
+    //rimuovo la classe active
+    document.querySelector(".active").classList.remove('active')
+    document.querySelector(".scaleactive").classList.remove('scaleactive')
 
+    // incremento activindex 
+    active++;
+
+    // RIPARTO DA 0 quando arrivo in fondo alle immagini
+
+    if (active > images.length - 1) {
+
+        active = 0;
+    }
+
+    // aggiungo la classe active
+    document.getElementsByClassName('item')[active].classList.add('active');
+    document.getElementsByClassName('scale')[active].classList.add('scaleactive');
+}, 3000);
