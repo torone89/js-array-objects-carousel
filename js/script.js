@@ -72,17 +72,17 @@ const thumbnails = document.getElementById("thumb")
 
 let item = '';
 let thumb = '';
-
 let active = [0];
 
 for (let key in images) {
     item += `
-    <img class="item"src="${images[key].url}" alt="">
+     <div class="item">
+    <img src="${images[key].url}" alt="">
 <div class="textcontent">
     <h3>${images[key].title}</h3>
     <p>${images[key].description}</p>
     </div>
-      
+      </div>
             `
     thumb += `
         <div class="thumb">
@@ -126,6 +126,7 @@ dopo.addEventListener('click', function () {
     active++;
 
     // RIPARTO DA 0 quando arrivo in fondo alle immagini
+
     if (active > images.length - 1) {
 
 
