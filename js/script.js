@@ -3,14 +3,16 @@
 console.log("JS")
 
 
+// Ciao ragazze e ciao ragazzi!!
+// Esercizio di oggi: Carosello Array di Oggetti
+// nome repo: js-array-objects-carousel
+// ## Consegna
 // Dato un array di oggetti letterali con:
 // - url dell’immagine
 // - titolo
 // - descrizione
 // Creare un carosello ispirandosi alla foto allegata. Potete anche usare come base il carosello dell'esercizio precedente
-// ## Milstone 0:
-// Come nel primo carosello realizzato, focalizziamoci prima sulla creazione del markup statico: costruiamo il container e inseriamo l’immagine grande in modo da poter stilare lo slider.
-// ## Milestone 1:
+//
 // Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
 // Al click dell’utente sulle frecce verso sinistra o destra, l’immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
 // ## Milestone 2:
@@ -58,3 +60,96 @@ const images = [
             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.',
     },
 ];
+
+
+// Mi recupero tutte le immagini per l'array
+
+const sources = ["img/01.jpg", "img/02.jpg", "img/03.jpg", "img/04.jpg", "img/05.jpg"]
+
+console.log(sources)
+
+//  recupero la galleria dove mettere le immmagini
+
+const contenitore = document.getElementById("galleria")
+console.log(contenitore)
+
+const thumbnails = document.getElementById("thumb")
+
+// // Variabile per le immagini attive
+let activeIndex = 0
+
+
+for (let i = 0; i < sources.length; i++) {
+
+
+    contenitore.innerHTML += `<img class="item" src="${sources[i]}" alt="immagine-${i}">`
+
+    thumbnails.innerHTML += `<img class="scale" src="${sources[i]}" alt="immagine-${i}">`
+
+}
+
+// Prendo le classi item&scale dal css per attivare disattivare stili sulle immagini
+
+document.getElementsByClassName('item')[activeIndex].classList.add('active');
+
+document.getElementsByClassName('scale')[activeIndex].classList.add('scaleactive');
+
+
+// MILESTONE 3
+// Al click dell'utente sulle frecce, l'immagine attiva cambia e diventa visibile nello slider, prendendo il posto della precedente.
+// e sul thumbnail cambia il grayscale e si aggiunge una boxshadow
+
+// Aggiungo i bottoni 
+
+const prima = document.getElementById('prima');
+const dopo = document.getElementById('dopo');
+console.log(prima, dopo)
+
+// Aggiungo la listener al button
+
+dopo.addEventListener('click', function () {
+    //rimuovo la classe active
+    document.querySelector(".active").classList.remove('active')
+    document.querySelector(".scaleactive").classList.remove('scaleactive')
+
+    // incremento activindex 
+    activeIndex++;
+
+    // RIPARTO DA 0 quando arrivo in fondo alle immagini
+    if (activeIndex > sources.length - 1) {
+
+
+        activeIndex = 0;
+    }
+
+    // aggiungo la classe active
+    document.getElementsByClassName('item')[activeIndex].classList.add('active');
+    document.getElementsByClassName('scale')[activeIndex].classList.add('scaleactive');
+})
+
+// BONUS 1:
+// Aggiungere il ciclo infinito del carosello. Ovvero se l' immagine attiva è la prima 
+// e l'utente clicca la freccia per andare indietro, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura s
+// e l'utente clicca la freccia verso avanti, deve attivarsi la prima immgine.
+
+
+prima.addEventListener('click', function () {
+    //rimuovo la classe active
+    document.querySelector(".active").classList.remove('active')
+    document.querySelector(".scaleactive").classList.remove('scaleactive')
+
+    // RIPARTO DA 0 quando arrivo in fondo alle immagini
+    activeIndex--
+
+    if (activeIndex < 0) {
+        activeIndex = sources.length - 1;
+    }
+
+    // aggiungo la classe active
+    document.getElementsByClassName('item')[activeIndex].classList.add('active');
+    document.getElementsByClassName('scale')[activeIndex].classList.add('scaleactive');
+})
+
+
+
+
