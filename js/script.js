@@ -62,14 +62,13 @@ const images = [
 ];
 
 
-//   recupero la galleria dove mettere le immmagini
 
 const contenitore = document.getElementById("galleria")
 console.log(contenitore)
 
 const thumbnails = document.getElementById("thumb")
 
-
+// Variabili di appoggio 
 let item = '';
 let thumb = '';
 let active = [0];
@@ -104,11 +103,6 @@ document.getElementsByClassName('item')[active].classList.add('active');
 
 document.getElementsByClassName('scale')[active].classList.add('scaleactive');
 
-
-// MILESTONE 3
-// Al click dell'utente sulle frecce, l'immagine attiva cambia e diventa visibile nello slider, prendendo il posto della precedente.
-// e sul thumbnail cambia il grayscale e si aggiunge una boxshadow
-
 // Aggiungo i bottoni
 
 const prima = document.getElementById('prima');
@@ -129,7 +123,6 @@ dopo.addEventListener('click', function () {
 
     if (active > images.length - 1) {
 
-
         active = 0;
     }
 
@@ -138,7 +131,7 @@ dopo.addEventListener('click', function () {
     document.getElementsByClassName('scale')[active].classList.add('scaleactive');
 })
 
-// BONUS 1:
+
 // Aggiungere il ciclo infinito del carosello. Ovvero se l' immagine attiva è la prima 
 // e l'utente clicca la freccia per andare indietro, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura s
 // e l'utente clicca la freccia verso avanti, deve attivarsi la prima immgine.
