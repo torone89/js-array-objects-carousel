@@ -62,44 +62,54 @@ const images = [
 ];
 
 
-// Mi recupero tutte le immagini per l'array
-
-const sources = ["img/01.jpg", "img/02.jpg", "img/03.jpg", "img/04.jpg", "img/05.jpg"]
-
-console.log(sources)
-
-//  recupero la galleria dove mettere le immmagini
+//   recupero la galleria dove mettere le immmagini
 
 const contenitore = document.getElementById("galleria")
 console.log(contenitore)
 
 const thumbnails = document.getElementById("thumb")
 
-// // Variabile per le immagini attive
-let activeIndex = 0
 
+let item = '';
+let thumb = '';
 
-for (let i = 0; i < sources.length; i++) {
+let active = [0];
 
-
-    contenitore.innerHTML += `<img class="item" src="${sources[i]}" alt="immagine-${i}">`
-
-    thumbnails.innerHTML += `<img class="scale" src="${sources[i]}" alt="immagine-${i}">`
-
+for (let key in images) {
+    item += `
+    <img class="item"src="${images[key].url}" alt="">
+<div class="textcontent">
+    <h3>${images[key].title}</h3>
+    <p>${images[key].description}</p>
+    </div>
+      
+            `
+    thumb += `
+        <div class="thumb">
+            <img class="scale" src="${images[key].url}" alt="">
+        </div>
+    `
 }
+
+
+contenitore.innerHTML += item
+
+thumbnails.innerHTML += thumb
+
+
 
 // Prendo le classi item&scale dal css per attivare disattivare stili sulle immagini
 
-document.getElementsByClassName('item')[activeIndex].classList.add('active');
+document.getElementsByClassName('item')[active].classList.add('active');
 
-document.getElementsByClassName('scale')[activeIndex].classList.add('scaleactive');
+document.getElementsByClassName('scale')[active].classList.add('scaleactive');
 
 
 // MILESTONE 3
 // Al click dell'utente sulle frecce, l'immagine attiva cambia e diventa visibile nello slider, prendendo il posto della precedente.
 // e sul thumbnail cambia il grayscale e si aggiunge una boxshadow
 
-// Aggiungo i bottoni 
+// Aggiungo i bottoni
 
 const prima = document.getElementById('prima');
 const dopo = document.getElementById('dopo');
@@ -113,18 +123,18 @@ dopo.addEventListener('click', function () {
     document.querySelector(".scaleactive").classList.remove('scaleactive')
 
     // incremento activindex 
-    activeIndex++;
+    active++;
 
     // RIPARTO DA 0 quando arrivo in fondo alle immagini
-    if (activeIndex > sources.length - 1) {
+    if (active > images.length - 1) {
 
 
-        activeIndex = 0;
+        active = 0;
     }
 
     // aggiungo la classe active
-    document.getElementsByClassName('item')[activeIndex].classList.add('active');
-    document.getElementsByClassName('scale')[activeIndex].classList.add('scaleactive');
+    document.getElementsByClassName('item')[active].classList.add('active');
+    document.getElementsByClassName('scale')[active].classList.add('scaleactive');
 })
 
 // BONUS 1:
@@ -139,15 +149,15 @@ prima.addEventListener('click', function () {
     document.querySelector(".scaleactive").classList.remove('scaleactive')
 
     // RIPARTO DA 0 quando arrivo in fondo alle immagini
-    activeIndex--
+    active--
 
-    if (activeIndex < 0) {
-        activeIndex = sources.length - 1;
+    if (active < 0) {
+        active = images.length - 1;
     }
 
     // aggiungo la classe active
-    document.getElementsByClassName('item')[activeIndex].classList.add('active');
-    document.getElementsByClassName('scale')[activeIndex].classList.add('scaleactive');
+    document.getElementsByClassName('item')[active].classList.add('active');
+    document.getElementsByClassName('scale')[active].classList.add('scaleactive');
 })
 
 
