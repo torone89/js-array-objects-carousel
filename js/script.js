@@ -94,7 +94,7 @@ document.getElementsByClassName('item')[active].classList.add('active');
 
 document.getElementsByClassName('scale')[active].classList.add('scaleactive');
 
-
+// FUNZIONE GOtoNExt
 const goToNext = () => {
     //rimuovo la classe active
     document.querySelector(".active").classList.remove('active')
