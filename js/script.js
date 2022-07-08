@@ -51,11 +51,8 @@ const images = [
     },
 ];
 
-
-
 const contenitore = document.getElementById("galleria")
 console.log(contenitore)
-
 const thumbnails = document.getElementById("thumb")
 
 // Variabili di appoggio 
@@ -80,9 +77,8 @@ for (let key in images) {
     `
 }
 
-
+// STAMPO SUL DOM
 contenitore.innerHTML += item
-
 thumbnails.innerHTML += thumb
 
 // / ## Milestone 2:
@@ -98,16 +94,8 @@ document.getElementsByClassName('item')[active].classList.add('active');
 
 document.getElementsByClassName('scale')[active].classList.add('scaleactive');
 
-// Aggiungo i bottoni
 
-const prima = document.getElementById('prima');
-const dopo = document.getElementById('dopo');
-console.log(prima, dopo)
-
-// Aggiungo la listener al button
-
-
-dopo.addEventListener('click', function () {
+const goToNext = () => {
     //rimuovo la classe active
     document.querySelector(".active").classList.remove('active')
     document.querySelector(".scaleactive").classList.remove('scaleactive')
@@ -125,8 +113,17 @@ dopo.addEventListener('click', function () {
     // aggiungo la classe active
     document.getElementsByClassName('item')[active].classList.add('active');
     document.getElementsByClassName('scale')[active].classList.add('scaleactive');
-})
+}
 
+// Aggiungo i bottoni
+const prima = document.getElementById('prima');
+const dopo = document.getElementById('dopo');
+console.log(prima, dopo)
+
+// Invoco la funzione gotonext e uso l'AddeventListner per cliccare sul bottone dopo per
+// passare all'immagine succesiva
+
+dopo.addEventListener('click', goToNext)
 
 // Aggiungere il ciclo infinito del carosello. Ovvero se l' immagine attiva è la prima 
 // e l'utente clicca la freccia per andare indietro, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura s
@@ -156,22 +153,8 @@ prima.addEventListener('click', function () {
 // Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo 
 // (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
 
-const autoplay = setInterval(function () {
-    //rimuovo la classe active
-    document.querySelector(".active").classList.remove('active')
-    document.querySelector(".scaleactive").classList.remove('scaleactive')
+setInterval(goToNext, 3000);
 
-    // incremento activindex 
-    active++;
 
-    // RIPARTO DA 0 quando arrivo in fondo alle immagini
 
-    if (active > images.length - 1) {
 
-        active = 0;
-    }
-
-    // aggiungo la classe active
-    document.getElementsByClassName('item')[active].classList.add('active');
-    document.getElementsByClassName('scale')[active].classList.add('scaleactive');
-}, 3000);
