@@ -66,7 +66,7 @@ let active = [0];
 for (let key in images) {
     item += `
      <div class="item">
-    <img src="${images[key].url}" alt="">
+    <img src="${images[key].url}" alt="${images[key].title}">
 <div class="textcontent">
     <h3>${images[key].title}</h3>
     <p>${images[key].description}</p>
@@ -75,7 +75,7 @@ for (let key in images) {
             `
     thumb += `
         <div class="thumb">
-            <img class="scale" src="${images[key].url}" alt="">
+            <img class="scale" src="${images[key].url}" alt="${images[key].title}">
         </div>
     `
 }
